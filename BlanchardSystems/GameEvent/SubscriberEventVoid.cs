@@ -1,0 +1,29 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+
+namespace BlanchardSystems.GameEvent
+{
+    public class SubscriberEventVoid : MonoBehaviour
+    {
+        public ScriptableEventVoid GameEvent;
+        [Space(10)] public UnityEvent Methods;
+
+        public void Subscribe()
+        {
+            GameEvent.Register(Methods.Invoke);
+        }
+
+        private void OnEnable()
+        {
+            Subscribe();
+        }
+
+        private void OnDisable()
+        {
+            GameEvent.Unregister(Methods.Invoke);
+        }
+    }
+}
